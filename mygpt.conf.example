@@ -1,0 +1,5 @@
+[general]
+username = "user"
+
+[openai]
+api_key = "your-openai-api-key"
