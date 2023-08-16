@@ -16,7 +16,9 @@ async fn main() -> Result<(), gpterror::GPTError> {
     let mut ai = OpenAI::new(cfg);
 
     let mut response = ai.get_response(opt.prompt.clone()).await?;
+    println!("{}", response);
 
+    /*
     println!("get_response: {}", response);
 
     response = ai.immutable_get_response(opt.prompt.clone(), None).await?;
@@ -30,6 +32,13 @@ async fn main() -> Result<(), gpterror::GPTError> {
     })).await?;
 
     println!("immutable_get_response from custom system msg: {}", response);
+    */
+    println!("{:?}", ai.config.save(None));
+
+    if let Some(ref mut general) = ai.config.general {
+        general.username = Some("me".into());
+    }
+    println!("{:?}", ai.config.save(None));
 
     Ok(())
 }
